@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0467fb25316f4be0b80e7e15335ffebf, type: 3}
+  m_Name: Business2
+  m_EditorClassIdentifier: 
+  baseIncome: 700
+  balance: 1000
+  baseCost: 30
+  businessName: "\u0411\u0438\u0437\u043D\u0435\u0441 2"
+  baseCashPerRound: 2
+  upgrade1Multiplier: 2
+  upgrade2Multiplier: 3
+  maxLevel: 20
+  delayBeforeCollecting: 3
+  incomePerLevel: 3
+  upgradeBenefit: 50
