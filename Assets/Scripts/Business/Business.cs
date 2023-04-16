@@ -21,7 +21,6 @@ public class Business : MonoBehaviour
     [SerializeField] private float delay = 3f;
     [SerializeField] private Slider slider;
 
-    // [SerializeField] private GameManager gameManager;
     [SerializeField] public BusinessConfig config;
 
     public float currentProgress = 0f;
