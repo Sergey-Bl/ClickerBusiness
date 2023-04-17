@@ -15,7 +15,7 @@ MonoBehaviour:
   baseCost: 1
   businessName: "\u0411\u0438\u0437\u043D\u0435\u0441 1"
   baseCashPerRound: 1.5
-  upgrade1Multiplier: 10
-  upgrade2Multiplier: 20
+  upgrade1Multiplier: 0
+  upgrade2Multiplier: 0
   maxLevel: 10
   delay: 3
