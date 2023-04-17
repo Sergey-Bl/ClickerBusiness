@@ -20,11 +20,11 @@ namespace DefaultNamespace.Manager
         {
             balance = 2f;
             UpdateBalanceText();
-            for (int i = 0; i < businessConfigs.Length; i++)
+            foreach (var t in businessConfigs)
             {
                 GameObject businessObject = Instantiate(businessPrefab, businessListTransform);
                 Business business = businessObject.GetComponent<Business>();
-                business.Setup(businessConfigs[i], this);
+                business.Setup(t, this);
                 businesses.Add(business);
             }
 

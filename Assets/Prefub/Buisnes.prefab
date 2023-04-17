@@ -1058,10 +1058,8 @@ MonoBehaviour:
   maxLevel: 10
   upgrade1Multiplier: 1
   upgrade2Multiplier: 1
-  delay: 3
   slider: {fileID: 2837227803216569962}
-  config: {fileID: 11400000, guid: 1315f70d4cf1c4f308f63fedab96f3d5, type: 2}
-  changeText: {fileID: 7469553485185803403}
+  config: {fileID: 11400000, guid: abfcc1d36629c43bbbb737bd52836103, type: 2}
   currentProgress: 0
   isCollectingCash: 0
   nameLabel: {fileID: 248891082}

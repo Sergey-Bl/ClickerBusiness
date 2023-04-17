@@ -30,26 +30,14 @@ public class Business : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelLabel;
     [SerializeField] private TextMeshProUGUI cashLabel;
     [SerializeField] private TextMeshProUGUI costLabel;
-    
+
     [SerializeField] private Button upgrade1Button;
     [SerializeField] private Button upgrade2Button;
     [SerializeField] private Button levelButton;
 
-    private float upgrade1Price
-    {
-        get
-        {
-            return GetLevelCost(level) * upgrade1Multiplier;
-        }
-    }
-
-    private float upgrade2Price
-    {
-        get
-        {
-            return GetLevelCost(level) * upgrade2Multiplier;
-        }
-    }
+    // private float upgrade1Price => GetLevelCost(level) * upgrade1Multiplier;
+    //
+    // private float upgrade2Price => GetLevelCost(level) * upgrade2Multiplier;
 
     private float GetLevelCost(int level)
     {
@@ -63,16 +51,12 @@ public class Business : MonoBehaviour
 
     private float GetUpgradeMultiplier1()
     {
-        float multiplier = 0f;
-        // TODO: Implement logic for getting upgrade 1 multiplier
-        return multiplier;
+        return upgrade1Multiplier;
     }
 
     private float GetUpgradeMultiplier2()
     {
-        float multiplier = 0f;
-        // TODO: Implement logic for getting upgrade 2 multiplier
-        return multiplier;
+        return upgrade2Multiplier / 100f;
     }
 
     private void Start()
@@ -109,11 +93,11 @@ public class Business : MonoBehaviour
     public void BuyUpgrade1()
     {
         GameManager gameManager = FindObjectOfType<GameManager>();
-        if (gameManager.balance >= upgrade1Price)
+        if (gameManager.balance >= currentCash)
         {
-            gameManager.balance -= upgrade1Price;
+            gameManager.balance -= currentCash;
             upgrade1Button.interactable = false;
-            currentCash += config.upgradeBenefit;
+            currentCash += config.upgrade1Multiplier;
             UpdateUI();
         }
     }
@@ -121,14 +105,16 @@ public class Business : MonoBehaviour
     public void BuyUpgrade2()
     {
         GameManager gameManager = FindObjectOfType<GameManager>();
-        if (gameManager.balance >= upgrade2Price)
+        if (gameManager.balance >= currentCash)
         {
-            gameManager.balance -= upgrade2Price;
+            gameManager.balance -= currentCash;
             upgrade2Button.interactable = false;
+            currentCash += config.upgrade2Multiplier;
             UpdateUI();
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void UpdateProgressBar()
     {
         currentProgress += Time.deltaTime / delay;
@@ -136,23 +122,17 @@ public class Business : MonoBehaviour
         if (currentProgress >= 1.0f)
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
-            // Calculate excess progress
             float excessProgress = currentProgress - 1.0f;
 
-            // Add excess progress to current cash
             currentCash += GetCashPerRound();
 
-            // Add current cash to gameManager balance
             gameManager.AddToBalance(currentCash);
 
-            // Reset current cash to zero
             currentCash = 0f;
 
-            // Reset current progress to the excess progress value
             currentProgress = excessProgress;
         }
 
-        // Set progress bar value
         float progressValue = currentProgress;
         if (slider != null)
         {
@@ -160,7 +140,6 @@ public class Business : MonoBehaviour
         }
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
     public IEnumerator CollectCash()
     {
         while (level < 1)
@@ -195,6 +174,7 @@ public class Business : MonoBehaviour
         upgrade1Multiplier = config.upgrade1Multiplier;
         upgrade2Multiplier = config.upgrade2Multiplier;
         maxLevel = config.maxLevel;
+        delay = config.delay;
 
         UpdateUI();
     }

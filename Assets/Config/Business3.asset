@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0467fb25316f4be0b80e7e15335ffebf, type: 3}
   m_Name: Business3
   m_EditorClassIdentifier: 
-  baseIncome: 700
   baseCost: 100
   businessName: "\u0411\u0438\u0437\u043D\u0435\u0441 3"
   baseCashPerRound: 200
   upgrade1Multiplier: 0
   upgrade2Multiplier: 0
   maxLevel: 20
-  upgradeBenefit: 50
+  delay: 10
