@@ -46,7 +46,7 @@ public class Business : MonoBehaviour
 
     public float GetCashPerRound()
     {
-        return baseCashPerRound + (GetUpgradeMultiplier1() + GetUpgradeMultiplier2());
+        return level * baseCashPerRound + (GetUpgradeMultiplier1() + GetUpgradeMultiplier2());
     }
 
     private float GetUpgradeMultiplier1()
@@ -56,7 +56,7 @@ public class Business : MonoBehaviour
 
     private float GetUpgradeMultiplier2()
     {
-        return upgrade2Multiplier;
+        return upgrade2Multiplier / 100f;
     }
 
     private void Start()
@@ -86,8 +86,8 @@ public class Business : MonoBehaviour
     {
         nameLabel.text = businessName;
         levelLabel.text = "Level: " + level.ToString();
-        cashLabel.text = "Cash: $" + currentCash.ToString("0.00");
-        costLabel.text = "Upgrade Cost: $" + GetLevelCost(level).ToString("0.00");
+        cashLabel.text = "$" + currentCash.ToString("0.00");
+        costLabel.text = "Level UP: $" + GetLevelCost(level).ToString("0.00");
     }
 
     public void BuyUpgrade1()
@@ -118,8 +118,6 @@ public class Business : MonoBehaviour
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
             float excessProgress = currentProgress - 1.0f;
-
-            // currentCash += GetCashPerRound();
 
             gameManager.AddToBalance(currentCash);
 
