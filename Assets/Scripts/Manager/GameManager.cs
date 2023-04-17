@@ -7,7 +7,7 @@ namespace DefaultNamespace.Manager
     public class GameManager : MonoBehaviour
     {
         public TextMeshProUGUI balanceText;
-        
+
         public BusinessConfig config;
         private List<Business> businesses = new List<Business>();
         public BusinessConfig[] businessConfigs;
@@ -18,7 +18,7 @@ namespace DefaultNamespace.Manager
 
         private void Start()
         {
-            balance = config.balance;
+            balance = 0f;
             UpdateBalanceText();
             for (int i = 0; i < businessConfigs.Length; i++)
             {
@@ -27,7 +27,7 @@ namespace DefaultNamespace.Manager
                 business.Setup(businessConfigs[i], this);
                 businesses.Add(business);
             }
-        
+
             businesses[0].BuyLevel();
         }
 

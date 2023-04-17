@@ -160,14 +160,12 @@ public class Business : MonoBehaviour
 
     public void Setup(BusinessConfig config, GameManager manager)
     {
-        GameManager gameManager = FindObjectOfType<GameManager>();
         businessName = config.businessName;
         baseCost = config.baseCost;
         baseCashPerRound = config.baseCashPerRound;
         upgrade1Multiplier = config.upgrade1Multiplier;
         upgrade2Multiplier = config.upgrade2Multiplier;
         maxLevel = config.maxLevel;
-        gameManager = manager;
 
         UpdateUI();
     }
