@@ -53,5 +53,8 @@ namespace DefaultNamespace.Manager
         {
             balanceText.text = "$" + balance.ToString("0.00");
         }
+        
     }
+    
+    
 }

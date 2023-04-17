@@ -46,7 +46,7 @@ public class Business : MonoBehaviour
 
     public float GetCashPerRound()
     {
-        return level * baseCashPerRound * (1 + GetUpgradeMultiplier1() + GetUpgradeMultiplier2());
+        return baseCashPerRound + (GetUpgradeMultiplier1() + GetUpgradeMultiplier2());
     }
 
     private float GetUpgradeMultiplier1()
@@ -56,7 +56,7 @@ public class Business : MonoBehaviour
 
     private float GetUpgradeMultiplier2()
     {
-        return upgrade2Multiplier / 100f;
+        return upgrade2Multiplier;
     }
 
     private void Start()
@@ -93,25 +93,20 @@ public class Business : MonoBehaviour
     public void BuyUpgrade1()
     {
         GameManager gameManager = FindObjectOfType<GameManager>();
-        if (gameManager.balance >= currentCash)
-        {
-            gameManager.balance -= currentCash;
-            upgrade1Button.interactable = false;
-            currentCash += config.upgrade1Multiplier;
-            UpdateUI();
-        }
+
+        gameManager.balance -= currentCash;
+        upgrade1Button.interactable = false;
+        currentCash += config.upgrade1Multiplier;
+        UpdateUI();
     }
 
     public void BuyUpgrade2()
     {
         GameManager gameManager = FindObjectOfType<GameManager>();
-        if (gameManager.balance >= currentCash)
-        {
-            gameManager.balance -= currentCash;
-            upgrade2Button.interactable = false;
-            currentCash += config.upgrade2Multiplier;
-            UpdateUI();
-        }
+        gameManager.balance -= currentCash;
+        upgrade2Button.interactable = false;
+        currentCash += config.upgrade2Multiplier / 100;
+        UpdateUI();
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
@@ -124,7 +119,7 @@ public class Business : MonoBehaviour
             GameManager gameManager = FindObjectOfType<GameManager>();
             float excessProgress = currentProgress - 1.0f;
 
-            currentCash += GetCashPerRound();
+            // currentCash += GetCashPerRound();
 
             gameManager.AddToBalance(currentCash);
 
