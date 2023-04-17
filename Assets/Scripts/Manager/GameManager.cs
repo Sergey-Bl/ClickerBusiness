@@ -18,7 +18,7 @@ namespace DefaultNamespace.Manager
 
         private void Start()
         {
-            balance = 0f;
+            balance = 2f;
             UpdateBalanceText();
             for (int i = 0; i < businessConfigs.Length; i++)
             {

@@ -586,7 +586,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oldTextImp1: {fileID: 2837227804589747569}
   oldTextImp2: {fileID: 2837227803311340781}
-  newText: "\u041A\u0423\u041F\u041B\u0415\u041D\u041E"
+  maxLevelOld: {fileID: 1351743282232379714}
+  newTextImpr: Bought
+  newTextLevelMax: Max Level
 --- !u!1 &2837227803216569964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,6 +1051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   businessName: "\u0411\u0438\u0437\u043D\u0435\u0441 1"
+  level: 0
   currentCash: 0
   baseCost: 3
   baseCashPerRound: 3
@@ -1058,6 +1061,7 @@ MonoBehaviour:
   delay: 3
   slider: {fileID: 2837227803216569962}
   config: {fileID: 11400000, guid: 1315f70d4cf1c4f308f63fedab96f3d5, type: 2}
+  changeText: {fileID: 7469553485185803403}
   currentProgress: 0
   isCollectingCash: 0
   nameLabel: {fileID: 248891082}
@@ -1066,6 +1070,7 @@ MonoBehaviour:
   costLabel: {fileID: 2087469209}
   upgrade1Button: {fileID: 2837227803801006025}
   upgrade2Button: {fileID: 2837227804724614534}
+  levelButton: {fileID: 2837227804137822275}
 --- !u!1 &2837227803767779917
 GameObject:
   m_ObjectHideFlags: 0

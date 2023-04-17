@@ -10,15 +10,15 @@ public class Business : MonoBehaviour
 {
     [SerializeField] private string businessName;
 
-    private int level = 1;
+    [SerializeField] private int level = 1;
     public float currentCash = 0f;
 
-    [SerializeField] private float baseCost = 3f;
-    [SerializeField] private float baseCashPerRound = 3f;
+    [SerializeField] private float baseCost = 0f;
+    [SerializeField] private float baseCashPerRound = 0f;
     [SerializeField] private int maxLevel = 10;
-    [SerializeField] private float upgrade1Multiplier = 1;
-    [SerializeField] private float upgrade2Multiplier = 1;
-    [SerializeField] private float delay = 3f;
+    [SerializeField] private float upgrade1Multiplier = 0f;
+    [SerializeField] private float upgrade2Multiplier = 0f;
+    [SerializeField] private float delay = 0f;
     [SerializeField] private Slider slider;
 
     [SerializeField] public BusinessConfig config;
@@ -30,12 +30,26 @@ public class Business : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelLabel;
     [SerializeField] private TextMeshProUGUI cashLabel;
     [SerializeField] private TextMeshProUGUI costLabel;
+    
     [SerializeField] private Button upgrade1Button;
     [SerializeField] private Button upgrade2Button;
+    [SerializeField] private Button levelButton;
 
-    private float upgrade1Price => GetLevelCost(level) * config.upgrade1Multiplier;
+    private float upgrade1Price
+    {
+        get
+        {
+            return GetLevelCost(level) * upgrade1Multiplier;
+        }
+    }
 
-    private float upgrade2Price => GetLevelCost(level) * config.upgrade2Multiplier;
+    private float upgrade2Price
+    {
+        get
+        {
+            return GetLevelCost(level) * upgrade2Multiplier;
+        }
+    }
 
     private float GetLevelCost(int level)
     {
@@ -50,26 +64,37 @@ public class Business : MonoBehaviour
     private float GetUpgradeMultiplier1()
     {
         float multiplier = 0f;
+        // TODO: Implement logic for getting upgrade 1 multiplier
         return multiplier;
     }
 
     private float GetUpgradeMultiplier2()
     {
         float multiplier = 0f;
+        // TODO: Implement logic for getting upgrade 2 multiplier
         return multiplier;
     }
 
     private void Start()
     {
+        UpdateProgressBar();
         UpdateUI();
-        StartCoroutine(CollectCash());
+
+        if (level >= 1)
+        {
+            StartCoroutine(CollectCash());
+        }
+        else
+        {
+            isCollectingCash = false;
+        }
     }
 
     private void Update()
     {
         if (isCollectingCash)
         {
-            UpdateProgressBar();
+            return;
         }
     }
 
@@ -79,8 +104,6 @@ public class Business : MonoBehaviour
         levelLabel.text = "Level: " + level.ToString();
         cashLabel.text = "Cash: $" + currentCash.ToString("0.00");
         costLabel.text = "Upgrade Cost: $" + GetLevelCost(level).ToString("0.00");
-        // upgrade1Button.interactable = (gameManager.balance >= upgrade1Price && level < maxLevel && upgrade1Button.interactable == true);
-        // upgrade2Button.interactable = (gameManager.balance >= upgrade2Price && level < maxLevel && upgrade2Button.interactable == true);
     }
 
     public void BuyUpgrade1()
@@ -117,7 +140,7 @@ public class Business : MonoBehaviour
             float excessProgress = currentProgress - 1.0f;
 
             // Add excess progress to current cash
-            currentCash += GetCashPerRound() * excessProgress;
+            currentCash += GetCashPerRound();
 
             // Add current cash to gameManager balance
             gameManager.AddToBalance(currentCash);
@@ -137,8 +160,14 @@ public class Business : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public IEnumerator CollectCash()
     {
+        while (level < 1)
+        {
+            yield return null;
+        }
+
         isCollectingCash = true;
 
         while (true)
@@ -177,6 +206,14 @@ public class Business : MonoBehaviour
         {
             level++;
             UpdateUI();
+            if (level == 1 && !isCollectingCash)
+            {
+                StartCoroutine(CollectCash());
+            }
+            if (level == maxLevel)
+            {
+                levelButton.interactable = false;
+            }
         }
     }
 }
