@@ -56,7 +56,7 @@ public class Business : MonoBehaviour
 
     private float GetUpgradeMultiplier2()
     {
-        return upgrade2Multiplier / 100f;
+        return upgrade2Multiplier;
     }
 
     private void Start()
@@ -71,14 +71,6 @@ public class Business : MonoBehaviour
         else
         {
             isCollectingCash = false;
-        }
-    }
-
-    private void Update()
-    {
-        if (isCollectingCash)
-        {
-            return;
         }
     }
 
