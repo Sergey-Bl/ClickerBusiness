@@ -21,23 +21,23 @@ public class Business : MonoBehaviour
     [SerializeField] private float delay = 0f;
     [SerializeField] private Slider slider;
 
-    [SerializeField] public BusinessConfig config;
-
     public float currentProgress = 0f;
-    public bool isCollectingCash = false;
+    public float upgrade2Bonus = 0f;
+    // public bool isCollectingCash = false;
+    [SerializeField] private bool isUpgrade1Upgraded = false;
+    [SerializeField] private bool isUpgrade2Upgraded = false;
+    
 
     [SerializeField] private TextMeshProUGUI nameLabel;
     [SerializeField] private TextMeshProUGUI levelLabel;
     [SerializeField] private TextMeshProUGUI cashLabel;
     [SerializeField] private TextMeshProUGUI costLabel;
+    [SerializeField] private TextMeshProUGUI upgradeMultiplier1;
+    [SerializeField] private TextMeshProUGUI upgradeMultiplier2;
 
     [SerializeField] private Button upgrade1Button;
     [SerializeField] private Button upgrade2Button;
     [SerializeField] private Button levelButton;
-
-    // private float upgrade1Price => GetLevelCost(level) * upgrade1Multiplier;
-    //
-    // private float upgrade2Price => GetLevelCost(level) * upgrade2Multiplier;
 
     private float GetLevelCost(int level)
     {
@@ -46,7 +46,20 @@ public class Business : MonoBehaviour
 
     public float GetCashPerRound()
     {
-        return level * baseCashPerRound + (GetUpgradeMultiplier1() + GetUpgradeMultiplier2());
+        // return level * baseCashPerRound + (GetUpgradeMultiplier1() + GetUpgradeMultiplier2());
+        float cashPerRound = level * baseCashPerRound;
+
+        if (isUpgrade1Upgraded)
+        {
+            cashPerRound += GetUpgradeMultiplier1();
+        }
+
+        if (isUpgrade2Upgraded)
+        {
+            cashPerRound += GetUpgradeMultiplier2();
+        }
+
+        return cashPerRound;
     }
 
     private float GetUpgradeMultiplier1()
@@ -68,10 +81,10 @@ public class Business : MonoBehaviour
         {
             StartCoroutine(CollectCash());
         }
-        else
-        {
-            isCollectingCash = false;
-        }
+        
+        upgradeMultiplier1.text = upgrade1Multiplier.ToString("+ 0.00");;
+        upgradeMultiplier2.text = upgrade1Multiplier.ToString("0.00") + "%";
+    
     }
 
     public void UpdateUI()
@@ -80,26 +93,30 @@ public class Business : MonoBehaviour
         levelLabel.text = "Level: " + level.ToString();
         cashLabel.text = "$" + currentCash.ToString("0.00");
         costLabel.text = "Level UP: $" + GetLevelCost(level).ToString("0.00");
+        cashLabel.text += "\n+" + upgrade2Bonus.ToString("0.00") + "%";
     }
 
     public void BuyUpgrade1()
     {
-        GameManager gameManager = FindObjectOfType<GameManager>();
-
-        gameManager.balance -= currentCash;
+        // GameManager gameManager = FindObjectOfType<GameManager>();
+        // gameManager.balance -= 0;
         upgrade1Button.interactable = false;
-        currentCash += config.upgrade1Multiplier;
+        currentCash += upgrade1Multiplier;
+        isUpgrade1Upgraded = true;
         UpdateUI();
     }
 
     public void BuyUpgrade2()
     {
-        GameManager gameManager = FindObjectOfType<GameManager>();
-        gameManager.balance -= currentCash;
+        // GameManager gameManager = FindObjectOfType<GameManager>();
+        // gameManager.balance -= currentCash;
         upgrade2Button.interactable = false;
-        currentCash += config.upgrade2Multiplier / 100;
+        // currentCash += upgrade2Multiplier / 100;
+        upgrade2Bonus = currentCash * (1 + upgrade2Multiplier / 100); // calculate upgrade2 bonus as a percentage of current cash
+        isUpgrade2Upgraded = true;
         UpdateUI();
     }
+    
 
     // ReSharper disable Unity.PerformanceAnalysis
     public void UpdateProgressBar()
@@ -109,13 +126,13 @@ public class Business : MonoBehaviour
         if (currentProgress >= 1.0f)
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
-            float excessProgress = currentProgress - 1.0f;
 
-            gameManager.AddToBalance(currentCash);
+            gameManager.AddToBalance(currentCash + upgrade2Bonus); // добавляем текущий доход и бонус от upgrade2
 
             currentCash = 0f;
+            // upgrade2Bonus = 0f; // обнуляем бонус
 
-            currentProgress = excessProgress;
+            currentProgress = 0f;
         }
 
         float progressValue = currentProgress;
@@ -125,6 +142,7 @@ public class Business : MonoBehaviour
         }
     }
 
+
     public IEnumerator CollectCash()
     {
         while (level < 1)
@@ -132,7 +150,7 @@ public class Business : MonoBehaviour
             yield return null;
         }
 
-        isCollectingCash = true;
+        // isCollectingCash = true;
 
         while (true)
         {
@@ -146,7 +164,7 @@ public class Business : MonoBehaviour
             }
 
             currentCash += GetCashPerRound();
-            currentProgress = 0f;
+            // currentProgress = 0f;
             UpdateUI();
         }
     }
@@ -171,7 +189,7 @@ public class Business : MonoBehaviour
         {
             level++;
             UpdateUI();
-            if (level == 1 && !isCollectingCash)
+            if (level == 1)
             {
                 StartCoroutine(CollectCash());
             }

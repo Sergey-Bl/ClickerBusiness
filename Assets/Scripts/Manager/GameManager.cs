@@ -14,7 +14,7 @@ namespace DefaultNamespace.Manager
         public GameObject businessPrefab;
         public Transform businessListTransform;
 
-        public float balance;
+        private float balance;
 
         private void Start()
         {
@@ -28,7 +28,7 @@ namespace DefaultNamespace.Manager
                 businesses.Add(business);
             }
 
-            businesses[0].BuyLevel();
+            // businesses[0].BuyLevel();
         }
 
         public void AddToBalance(float amount)
