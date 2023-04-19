@@ -128,11 +128,9 @@ public class Business : MonoBehaviour
         if (currentProgress >= 1.0f)
         {
             BalanceManager balanceManager = FindObjectOfType<BalanceManager>();
-
             balanceManager.AddToBalance(currentCash + upgrade2Bonus);
 
             currentCash = 0f;
-
             currentProgress = 0f;
         }
 
