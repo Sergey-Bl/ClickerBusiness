@@ -5,9 +5,8 @@ public class ChangeText : MonoBehaviour
 {
     public TextMeshProUGUI oldTextImp1;
     public TextMeshProUGUI oldTextImp2;
-    public TextMeshProUGUI maxLevelOld;
+    
     public string newTextImpr;
-    public string newTextLevelMax;
 
     public void newsTextImpr1()
     {
@@ -18,10 +17,4 @@ public class ChangeText : MonoBehaviour
     {
         oldTextImp2.text = newTextImpr;
     }
-
-    public void maxLevel()
-    {
-        maxLevelOld.text = newTextLevelMax;
-    }
-    
 }

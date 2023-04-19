@@ -1,18 +1,20 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-namespace DefaultNamespace.Manager
-{
     public class PrefabCreatorManager : MonoBehaviour
     {
         private List<Business> businesses = new List<Business>();
-        public BusinessConfig[] businessConfigs;
-        public GameObject businessPrefab;
-        public Transform businessListTransform;
+        [SerializeField] 
+        private BusinessConfig[] businessConfigs;
+        
+        [SerializeField]
+        private GameObject businessPrefab;
 
         [SerializeField]
         private BalanceManager balanceManager;
+        
+        [SerializeField]
+        private Transform businessListTransform;
 
         private void Start()
         {
@@ -26,4 +28,3 @@ namespace DefaultNamespace.Manager
             }
         }
     }
-}
