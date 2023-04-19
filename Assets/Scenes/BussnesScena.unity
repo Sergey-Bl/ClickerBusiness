@@ -898,7 +898,7 @@ GameObject:
   - component: {fileID: 1124563733}
   - component: {fileID: 1124563732}
   m_Layer: 0
-  m_Name: PrefibSetup
+  m_Name: PrefabSetup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -923,8 +923,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7b6d47ba1736f44da9d9d872e8d9b3e3, type: 2}
   - {fileID: 11400000, guid: 4ada9acca20f34b0ca8b39e572624bf4, type: 2}
   businessPrefab: {fileID: 2837227803369519439, guid: 894240a0374fb4642ab3270b4d9090f6, type: 3}
-  businessListTransform: {fileID: 662498722}
   balanceManager: {fileID: 803331168}
+  businessListTransform: {fileID: 662498722}
 --- !u!4 &1124563733
 Transform:
   m_ObjectHideFlags: 0
