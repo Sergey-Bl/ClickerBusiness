@@ -23,9 +23,12 @@ public class Business : MonoBehaviour
 
     public float currentProgress = 0f;
     public float upgrade2Bonus = 0f;
-    // public bool isCollectingCash = false;
+
     [SerializeField] private bool isUpgrade1Upgraded = false;
     [SerializeField] private bool isUpgrade2Upgraded = false;
+
+    [SerializeField]
+    private BalanceManager balanceManager;
     
 
     [SerializeField] private TextMeshProUGUI nameLabel;
@@ -125,9 +128,10 @@ public class Business : MonoBehaviour
 
         if (currentProgress >= 1.0f)
         {
-            GameManager gameManager = FindObjectOfType<GameManager>();
+            BalanceManager balanceManager = FindObjectOfType<BalanceManager>();
 
-            gameManager.AddToBalance(currentCash + upgrade2Bonus); // добавляем текущий доход и бонус от upgrade2
+            // BalanceManager balanceManager = gameObject.GetComponent<BalanceManager>();
+            balanceManager.AddToBalance(currentCash + upgrade2Bonus); // добавляем текущий доход и бонус от upgrade2
 
             currentCash = 0f;
             // upgrade2Bonus = 0f; // обнуляем бонус
@@ -169,7 +173,7 @@ public class Business : MonoBehaviour
         }
     }
 
-    public void Setup(BusinessConfig config, GameManager manager)
+    public void Setup(BusinessConfig config, PrefabCreatorManager manager)
     {
         businessName = config.businessName;
         baseCost = config.baseCost;
@@ -184,8 +188,8 @@ public class Business : MonoBehaviour
 
     public void BuyLevel()
     {
-        GameManager gameManager = FindObjectOfType<GameManager>();
-        if (gameManager.RemoveFromBalance(GetLevelCost(level)) && level < maxLevel)
+        BalanceManager balanceManager = FindObjectOfType<BalanceManager>();
+        if (balanceManager.RemoveFromBalance(GetLevelCost(level)) && level < maxLevel)
         {
             level++;
             UpdateUI();

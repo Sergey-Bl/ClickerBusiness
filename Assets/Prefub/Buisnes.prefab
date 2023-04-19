@@ -1064,6 +1064,7 @@ MonoBehaviour:
   upgrade2Bonus: 0
   isUpgrade1Upgraded: 0
   isUpgrade2Upgraded: 0
+  balanceManager: {fileID: 0}
   nameLabel: {fileID: 248891082}
   levelLabel: {fileID: 2837227804746781622}
   cashLabel: {fileID: 632689600}
