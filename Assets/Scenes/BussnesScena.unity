@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c66aa5d5cd45fd9780cb3829a4c4f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balanceText: {fileID: 1577360275}
+  _balanceText: {fileID: 1577360275}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
