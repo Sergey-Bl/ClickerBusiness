@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1390156d6221d4429b6bb922fc957c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oldTextImp1: {fileID: 4240096420221263307}
-  oldTextImp2: {fileID: 4240096421097016407}
+  _oldTextImp1: {fileID: 4240096420221263307}
+  _oldTextImp2: {fileID: 4240096421097016407}
   newTextImpr: "\u041A\u0443\u043F\u043B\u0435\u043D\u043E"
 --- !u!1 &441005629358594090
 GameObject:
@@ -1240,7 +1240,7 @@ GameObject:
   - component: {fileID: 4240096420221263306}
   - component: {fileID: 4240096420221263307}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TextImpr1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1747,7 +1747,7 @@ GameObject:
   - component: {fileID: 4240096421097016406}
   - component: {fileID: 4240096421097016407}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TextImpr2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2116,12 +2116,12 @@ MonoBehaviour:
   slider: {fileID: 4240096421053372112}
   isUpgrade1Upgraded: 0
   isUpgrade2Upgraded: 0
-  nameLabel: {fileID: 2127953698558228080}
-  levelLabel: {fileID: 4240096420462617356}
-  cashLabel: {fileID: 2127953698983863162}
-  costLabel: {fileID: 2127953698334388259}
-  upgradeMultiplier1: {fileID: 4240096420221263307}
-  upgradeMultiplier2: {fileID: 4240096421097016407}
+  _nameLabel: {fileID: 2127953698558228080}
+  _levelLabel: {fileID: 4240096420462617356}
+  _cashLabel: {fileID: 2127953698983863162}
+  _costLabel: {fileID: 2127953698334388259}
+  _upgradeMultiplier1: {fileID: 4240096420221263307}
+  _upgradeMultiplier2: {fileID: 4240096421097016407}
   upgrade1Button: {fileID: 4240096419533610867}
   upgrade2Button: {fileID: 4240096420354827580}
   levelButton: {fileID: 4240096419867814137}

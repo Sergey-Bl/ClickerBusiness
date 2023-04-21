@@ -4,7 +4,7 @@ using UnityEngine;
 public class BalanceManager : MonoBehaviour
 
 {
-    public TextMeshProUGUI balanceText;
+    [SerializeField] private TextMeshProUGUI _balanceText;
     public float balance { get; private set; }
 
     public void AddToBalance(float amount)
@@ -23,6 +23,6 @@ public class BalanceManager : MonoBehaviour
 
     public void UpdateBalanceText()
     {
-        balanceText.text = "$" + balance.ToString("0.00");
+        _balanceText.text = "$" + balance.ToString("0.00");
     }
 }

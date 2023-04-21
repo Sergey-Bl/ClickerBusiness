@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class ChangeText : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI oldTextImp1;
-    [SerializeField] private TextMeshProUGUI oldTextImp2;
+    [SerializeField] private TextMeshProUGUI _oldTextImp1;
+    [SerializeField] private TextMeshProUGUI _oldTextImp2;
     [SerializeField] private string newTextImpr;
 
     public void newsTextImpr1()
     {
-        oldTextImp1.text = newTextImpr;
+        _oldTextImp1.text = newTextImpr;
     }
 
     public void newsTextImpr2()
     {
-        oldTextImp2.text = newTextImpr;
+        _oldTextImp2.text = newTextImpr;
     }
 }

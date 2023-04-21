@@ -24,12 +24,12 @@ public class Business : MonoBehaviour
     [SerializeField] private bool isUpgrade1Upgraded;
     [SerializeField] private bool isUpgrade2Upgraded;
 
-    [SerializeField] private TextMeshProUGUI nameLabel;
-    [SerializeField] private TextMeshProUGUI levelLabel;
-    [SerializeField] private TextMeshProUGUI cashLabel;
-    [SerializeField] private TextMeshProUGUI costLabel;
-    [SerializeField] private TextMeshProUGUI upgradeMultiplier1;
-    [SerializeField] private TextMeshProUGUI upgradeMultiplier2;
+    [SerializeField] private TextMeshProUGUI _nameLabel;
+    [SerializeField] private TextMeshProUGUI _levelLabel;
+    [SerializeField] private TextMeshProUGUI _cashLabel;
+    [SerializeField] private TextMeshProUGUI _costLabel;
+    [SerializeField] private TextMeshProUGUI _upgradeMultiplier1;
+    [SerializeField] private TextMeshProUGUI _upgradeMultiplier2;
 
     [SerializeField] private Button upgrade1Button;
     [SerializeField] private Button upgrade2Button;
@@ -45,8 +45,8 @@ public class Business : MonoBehaviour
             StartCoroutine(CollectCash());
         }
 
-        upgradeMultiplier1.text = upgrade1Multiplier.ToString("+ 0");
-        upgradeMultiplier2.text = upgrade2Multiplier.ToString("0") + "%";
+        _upgradeMultiplier1.text = upgrade1Multiplier.ToString("+ 0");
+        _upgradeMultiplier2.text = upgrade2Multiplier.ToString("0") + "%";
     }
 
     public void Setup(BusinessConfig config, PrefabCreatorManager manager)
@@ -64,11 +64,11 @@ public class Business : MonoBehaviour
 
     public void UpdateUI()
     {
-        nameLabel.text = businessName;
-        levelLabel.text = "Level: " + level.ToString();
-        cashLabel.text = "$" + currentCash.ToString("0.00");
-        costLabel.text = "Level UP: $" + GetLevelCost(level).ToString("0.00");
-        cashLabel.text += "\n+" + upgrade2Bonus.ToString("0") + "%";
+        _nameLabel.text = businessName;
+        _levelLabel.text = "Level: " + level.ToString();
+        _cashLabel.text = "$" + currentCash.ToString("0.00");
+        _costLabel.text = "Level UP: $" + GetLevelCost(level).ToString("0.00");
+        _cashLabel.text += "\n+" + upgrade2Bonus.ToString("0") + "%";
     }
 
     public float GetCashPerRound()
