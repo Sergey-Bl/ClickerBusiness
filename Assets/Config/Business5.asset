@@ -15,7 +15,7 @@ MonoBehaviour:
   <baseCost>k__BackingField: 5000
   <businessName>k__BackingField: "\u0411\u0438\u0437\u043D\u0435\u0441 5"
   <baseCashPerRound>k__BackingField: 5000
-  <upgrade1Multiplier>k__BackingField: 5
-  <upgrade2Multiplier>k__BackingField: 10
+  <upgrade1Multiplier>k__BackingField: 100000
+  <upgrade2Multiplier>k__BackingField: 200
   <maxLevel>k__BackingField: 10
   <delay>k__BackingField: 30
