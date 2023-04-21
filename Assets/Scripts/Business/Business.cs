@@ -6,18 +6,17 @@ using System.Collections;
 
 public class Business : MonoBehaviour
 {
-    [SerializeField] private string businessName;
-
     public float currentCash { get; private set; }
     public float currentProgress { get; private set; }
     public float upgrade2Bonus { get; private set; }
 
+    [SerializeField] private string businessName;
     [SerializeField] private int level = 1;
     [SerializeField] private float baseCost;
     [SerializeField] private float baseCashPerRound;
     [SerializeField] private int maxLevel = 10;
-    [SerializeField] private float upgrade1Multiplier;
-    [SerializeField] private float upgrade2Multiplier;
+    [SerializeField] private int upgrade1Multiplier;
+    [SerializeField] private int upgrade2Multiplier;
     [SerializeField] private float delay = 3f;
 
     [SerializeField] private Slider slider;
@@ -46,8 +45,8 @@ public class Business : MonoBehaviour
             StartCoroutine(CollectCash());
         }
 
-        upgradeMultiplier1.text = upgrade1Multiplier.ToString("+ 0.00");
-        upgradeMultiplier2.text = upgrade1Multiplier.ToString("0.00") + "%";
+        upgradeMultiplier1.text = upgrade1Multiplier.ToString("+ 0");
+        upgradeMultiplier2.text = upgrade2Multiplier.ToString("0") + "%";
     }
 
     public void Setup(BusinessConfig config, PrefabCreatorManager manager)
@@ -69,7 +68,7 @@ public class Business : MonoBehaviour
         levelLabel.text = "Level: " + level.ToString();
         cashLabel.text = "$" + currentCash.ToString("0.00");
         costLabel.text = "Level UP: $" + GetLevelCost(level).ToString("0.00");
-        cashLabel.text += "\n+" + upgrade2Bonus.ToString("0.00") + "%";
+        cashLabel.text += "\n+" + upgrade2Bonus.ToString("0") + "%";
     }
 
     public float GetCashPerRound()

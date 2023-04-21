@@ -3,10 +3,9 @@ using UnityEngine;
 
 public class ChangeText : MonoBehaviour
 {
-    public TextMeshProUGUI oldTextImp1;
-    public TextMeshProUGUI oldTextImp2;
-    
-    public string newTextImpr;
+    [SerializeField] private TextMeshProUGUI oldTextImp1;
+    [SerializeField] private TextMeshProUGUI oldTextImp2;
+    [SerializeField] private string newTextImpr;
 
     public void newsTextImpr1()
     {

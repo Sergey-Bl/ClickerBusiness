@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0467fb25316f4be0b80e7e15335ffebf, type: 3}
   m_Name: Business5
   m_EditorClassIdentifier: 
-  baseCost: 2500
-  businessName: "\u0411\u0438\u0437\u043D\u0435\u0441 5"
-  baseCashPerRound: 5000
-  upgrade1Multiplier: 0
-  upgrade2Multiplier: 0
-  maxLevel: 20
-  delay: 30
+  <baseCost>k__BackingField: 5000
+  <businessName>k__BackingField: "\u0411\u0438\u0437\u043D\u0435\u0441 5"
+  <baseCashPerRound>k__BackingField: 5000
+  <upgrade1Multiplier>k__BackingField: 5
+  <upgrade2Multiplier>k__BackingField: 10
+  <maxLevel>k__BackingField: 10
+  <delay>k__BackingField: 30
