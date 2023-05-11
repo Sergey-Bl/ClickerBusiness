@@ -2125,6 +2125,7 @@ MonoBehaviour:
   upgrade1Button: {fileID: 4240096419533610867}
   upgrade2Button: {fileID: 4240096420354827580}
   levelButton: {fileID: 4240096419867814137}
+  balanceManager: {fileID: 0}
 --- !u!1 &4240096421580096247
 GameObject:
   m_ObjectHideFlags: 0

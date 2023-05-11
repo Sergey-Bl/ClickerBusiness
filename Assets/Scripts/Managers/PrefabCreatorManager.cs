@@ -4,17 +4,14 @@ using UnityEngine;
     public class PrefabCreatorManager : MonoBehaviour
     {
         private List<Business> businesses = new List<Business>();
-        [SerializeField] 
-        private BusinessConfig[] businessConfigs;
         
-        [SerializeField]
-        private GameObject businessPrefab;
+        [SerializeField] private BusinessConfig[] businessConfigs;
+        
+        [SerializeField] private GameObject businessPrefab;
 
-        [SerializeField]
-        private BalanceManager balanceManager;
+        [SerializeField] private BalanceManager balanceManager;
         
-        [SerializeField]
-        private Transform businessListTransform;
+        [SerializeField] private Transform businessListTransform;
 
         private void Start()
         {

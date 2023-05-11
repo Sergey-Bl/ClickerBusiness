@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using Button = UnityEngine.UI.Button;
@@ -34,6 +35,14 @@ public class Business : MonoBehaviour
     [SerializeField] private Button upgrade1Button;
     [SerializeField] private Button upgrade2Button;
     [SerializeField] private Button levelButton;
+
+    private BalanceManager _balanceManager;
+
+    private void Awake()
+
+    {
+        _balanceManager = FindObjectOfType<BalanceManager>();
+    }
 
     private void Start()
     {
@@ -119,15 +128,13 @@ public class Business : MonoBehaviour
         UpdateUI();
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
     public void UpdateProgressBar()
     {
         currentProgress += Time.deltaTime / delay;
 
         if (currentProgress >= 1.0f)
         {
-            BalanceManager balanceManager = FindObjectOfType<BalanceManager>();
-            balanceManager.AddToBalance(currentCash + upgrade2Bonus);
+            _balanceManager.AddToBalance(currentCash + upgrade2Bonus);
 
             currentCash = 0f;
             currentProgress = 0f;
@@ -165,19 +172,16 @@ public class Business : MonoBehaviour
 
     public void BuyLevel()
     {
-        BalanceManager balanceManager = FindObjectOfType<BalanceManager>();
-        if (balanceManager.RemoveFromBalance(GetLevelCost(level)) && level < maxLevel)
+        if (!_balanceManager.RemoveFromBalance(GetLevelCost(level)) || level >= maxLevel) return;
+        level++;
+        UpdateUI();
+        if (level == 1)
         {
-            level++;
-            UpdateUI();
-            if (level == 1)
-            {
-                StartCoroutine(CollectCash());
-            }
-            if (level == maxLevel)
-            {
-                levelButton.interactable = false;
-            }
+            StartCoroutine(CollectCash());
+        }
+        if (level == maxLevel)
+        {
+            levelButton.interactable = false;
         }
     }
 }
